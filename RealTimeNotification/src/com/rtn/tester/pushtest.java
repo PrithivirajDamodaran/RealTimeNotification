@@ -28,7 +28,7 @@ public class pushtest{
 		long id = java.lang.Thread.currentThread( ).getId( );
 		long startCPUTimeNano = getCpuTime( id);
 
-		for (int x = 0; x < 20; x++)
+		for (int x = 0; x < 1; x++)
 			pubsub.Publish(data);
 		
 		long endCPUTimeNano = getCpuTime( id);
@@ -45,7 +45,7 @@ public class pushtest{
 		gpmessage.EventOrigin = "MobilePush";
 		gpmessage.EventID = "NewUpdates";
 		gpmessage.payload = "test payload";
-		String TargetTopic = "ab@yahoo.com";
+		String TargetTopic = "*";
 		PublishRequest req = new PublishRequest();
 		req.gpmessage = gpmessage;
 		req.TargetTopic = TargetTopic;

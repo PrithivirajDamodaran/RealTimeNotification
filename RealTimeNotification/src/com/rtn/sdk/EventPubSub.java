@@ -1,10 +1,16 @@
 package com.rtn.sdk;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutput;
-import java.io.ObjectOutputStream;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import org.elasticsearch.action.index.IndexResponse;
+import org.elasticsearch.client.transport.TransportClient;
+import org.elasticsearch.common.settings.ImmutableSettings;
+import org.elasticsearch.common.settings.Settings;
+import org.elasticsearch.common.transport.InetSocketTransportAddress;
 
 import com.owlike.genson.Genson;
 import com.rabbitmq.client.Channel;
@@ -28,16 +34,18 @@ public class EventPubSub{
 	Connection connection;
 	ConnectionFactory factory;
 	Channel channel;
-	ByteArrayOutputStream bos = new ByteArrayOutputStream();
 	ObjectOutput out = null;
 	byte[] yourBytes = null;
 	Genson genson;
+	String ESCLUSTER;
 	Config config = Config.getConfig();
+	TransportClient client;
 
 
 
 	public void init(){
-		
+
+
 		QUEUE_NAME = config.get("PUBLISHER_QUEUE");
 		String RabbitMQHost = config.get("RABBITMQ_HOST"); 
 		String username = config.get("RABBITMQ_USER");
@@ -47,15 +55,16 @@ public class EventPubSub{
 		factory.setUsername(username);
 		factory.setPassword(password);
 		genson = new Genson();
+		ESCLUSTER = config.get("ELASTICHSEARCH_CLUSTER");
+		
+
 
 
 		try {
 			connection = factory.newConnection();
 			channel = connection.createChannel();
-			out = new ObjectOutputStream(bos);  
 			//channel.confirmSelect();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -64,8 +73,9 @@ public class EventPubSub{
 		try {
 			channel.close();
 			connection.close();
+
+			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -73,13 +83,9 @@ public class EventPubSub{
 
 	public void Publish(List<PublishRequest> publishrequests){
 		try {
-
 			channel.queueDeclare(QUEUE_NAME, false, false, false, null);
 			for (int i = 0; i < publishrequests.size() ; i++) {
-
-				//channel.basicPublish("", QUEUE_NAME, null, serializeMessage(publishrequests.get(i)));
 				channel.basicPublish("", QUEUE_NAME, null, convertMessage(publishrequests.get(i)));
-				//System.out.println("sent");
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -92,8 +98,25 @@ public class EventPubSub{
 		return json.getBytes();
 	}
 
-	public void Subscribe(){
+	public void Subscribe(List<SubscribeRequest> subscribeRequests){
 
+		Settings settings = ImmutableSettings.settingsBuilder().put("cluster.name", ESCLUSTER).build();
+		client = new TransportClient(settings);
+		client = client.addTransportAddress(new InetSocketTransportAddress("localhost", 9300));			
+	
+		Map<String, Object> subscription = new HashMap<String, Object>();
+		for (int i = 0; i < subscribeRequests.size(); i++){
+			subscription.put("eventorigin", subscribeRequests.get(i).EventOrigin);
+			subscription.put("eventid", subscribeRequests.get(i).EventID);
+			subscription.put("stype", subscribeRequests.get(i).SubscriptionType);
+			subscription.put("targettopic", subscribeRequests.get(i).TargetTopic);
+			subscription.put("status", "A");
+			IndexResponse ir = client.prepareIndex("rtn", "subscriptions")
+					.setSource(subscription)
+					.execute().actionGet();
+			System.out.print(ir.getId());
+		}
+		client.close();
 	}
 
 }
