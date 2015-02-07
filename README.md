@@ -15,7 +15,7 @@ RTN is the a unified framework that will take care of the above use-cases with m
 
 #RTN Framework
 
- ![solarized selective contrast](https://github.com/altercation/solarized/raw/master/img/solarized-selcon.png)
+ ![solarized selective contrast](https://github.com/PrithivirajDamodaran/RealTimeNotification/blob/master/RTNFramework.png)
  
 1. By default this can run in a single machine and the requirment is to have to have RabbitMQ with MQTT plugin enabled and Elastic Search installed locally.
 2. Uses LMAX disruptor for high speed thread communciation.
