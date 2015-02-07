@@ -40,8 +40,8 @@ For v1.0 RTN supports only MQTTNotifiers and for most requiremets RabbitMQ scale
 #ElasticSearch Configurations
 1. Create an Index called rtn - PUT http://localhost:9200/rtn/
 2. Create a sample subscription - POST http://localhost:9200/rtn/subscriptions/1
-   Refer this gist for a sample subscription - https://gist.github.com/PrithivirajDamodaran/f8dba8d3a1625a85aa2d
-    
+    ### [Refer this gist for a sample subscription](https://gist.github.com/PrithivirajDamodaran/f8dba8d3a1625a85aa2d)
+
 
 #Creating your own Notification message
 
