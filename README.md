@@ -45,7 +45,7 @@ For v1.0 RTN supports only MQTTNotifiers and for most requiremets RabbitMQ scale
 
 #Creating your own Notification message
 
-You had tweak GPMessage.java, PushEntry.java and PublishRequest.java to have your own messages. This isnt trivial you need to change RingBufferConsumer.java as well accordingly.
+You have to tweak GPMessage.java, PushEntry.java and PublishRequest.java to have your own messages. This isnt trivial you need to change RingBufferConsumer.java as well accordingly.
 
 # Roadmap:
 
