@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry exported="true" kind="lib" path="WebContent/WEB-INF/lib/log4j-1.2.17.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/asm-3.3.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/disruptor-3.3.0.jar" sourcepath="/Users/prithivirajdamodaran/.m2/repository/com/lmax/disruptor/3.3.0/disruptor-3.3.0-sources.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/genson-0.99.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/javax.servlet-3.0.0.v201112011016.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jersey-bundle-1.14.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/json.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/org.eclipse.paho.client.mqttv3-1.0.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/rabbitmq-client.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/elasticsearch-1.1.2.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/lucene-core-4.7.2.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
