@@ -28,6 +28,9 @@ Heart of the RTN is a high speed Inter Threading component using LMAX disruptor 
 
 For v1.0 RTN supports only MQTTNotifiers and for most requiremets RabbitMQ scale wouldnt be required as this is already high performant. 
 
+# Features v1.0
+1. Items highlighted in green in the Architecture diagram are available as a part of v1.0
+
 # Getting Started
 
 1. Download and install RabbitMQ.
