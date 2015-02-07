@@ -33,14 +33,14 @@ For v1.0 RTN supports only MQTTNotifiers and for most requiremets RabbitMQ scale
 3. Override config.properties K,V pairs as required.
 4. Down RTN code and start RTNAgent
 5. Refer pushtest.java to create Server side push code.
-6. To create mobile notifiction listener On mobile side refer to my other library here    https://github.com/PrithivirajDamodaran/MQTTPush4Android
+6. To create mobile notifiction listener On mobile side [refer to my other library here ](https://github.com/PrithivirajDamodaran/MQTTPush4Android)
 7. Create subscriptions in ElasticSearch using if you have requirements for Broadcast/Multicast notifications.
 
 
 #ElasticSearch Configurations
 1. Create an Index called rtn - PUT http://localhost:9200/rtn/
 2. Create a sample subscription - POST http://localhost:9200/rtn/subscriptions/1
-    ### [Refer this gist for a sample subscription](https://gist.github.com/PrithivirajDamodaran/f8dba8d3a1625a85aa2d)
+    [Refer this gist for a sample subscription](https://gist.github.com/PrithivirajDamodaran/f8dba8d3a1625a85aa2d)
 
 
 #Creating your own Notification message
